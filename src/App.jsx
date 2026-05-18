@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import djImage from './assets/DJ.png'
 
 function App() {
+  const [mostrarViaje, setMostrarViaje] = useState(false)
   return (
     <div className="bg-black text-white min-h-screen">
 
@@ -26,7 +28,8 @@ function App() {
         className="relative h-screen flex items-center justify-center text-center px-6"
         style={{
           backgroundImage: `url(${djImage})`,
-          backgroundSize: 'cover',
+          backgroundSize: 'contain',
+          backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
         }}
       >
@@ -193,13 +196,70 @@ function App() {
               placeholder="Teléfono"
               className="bg-black border border-zinc-700 p-4 rounded-xl"
             />
+            {mostrarViaje && (
+
+              <div className="bg-black border border-purple-500 p-6 rounded-2xl">
+
+                <h4 className="text-3xl font-bold text-purple-400 mb-5">
+                  Presupuesto de Viaje
+                </h4>
+
+                <input
+                  type="text"
+                  placeholder="Destino del evento"
+                  className="w-full bg-zinc-900 border border-zinc-700 p-4 rounded-xl mb-5"
+                />
+
+                <div className="space-y-3 text-gray-300">
+
+                  <p>🚗 Gasolina estimada: $1,200</p>
+
+                  <p>🛣 Casetas: $850</p>
+
+                  <p>🏨 Hospedaje: $1,500</p>
+
+                  <p>🍔 Alimentación staff: $700</p>
+
+                </div>
+
+                <div className="mt-6 text-2xl font-bold text-green-400">
+
+                  Total extra estimado: $4,250 MXN
+
+                </div>
+
+              </div>
+
+            )}
+            <input
+
+              type="text"
+              placeholder="Ubicación del evento"
+              className="bg-black border border-zinc-700 p-4 rounded-xl"
+            />
+
+            <label className="flex items-center gap-3 text-gray-300">
+
+              <input
+                type="checkbox"
+                onChange={(e) => setMostrarViaje(e.target.checked)}
+              />
+
+              Evento fuera de CDMX
+              (puede generar costos adicionales de traslado y hospedaje)
+
+            </label>
 
             <textarea
               placeholder="Cuéntanos sobre tu evento"
               rows="5"
               className="bg-black border border-zinc-700 p-4 rounded-xl"
             ></textarea>
+            <p className="text-yellow-400 bg-zinc-800 p-4 rounded-xl border border-yellow-500">
 
+              ⚠ Para solicitar el evento es necesario un anticipo de $1500 MXN.
+
+            </p>
             <button className="bg-purple-600 hover:bg-purple-700 py-4 rounded-2xl text-lg font-bold">
               Solicitar Cotización
             </button>
