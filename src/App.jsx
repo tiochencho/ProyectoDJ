@@ -183,7 +183,33 @@ function App() {
 
         <div className="max-w-3xl mx-auto bg-zinc-900 p-10 rounded-3xl border border-zinc-800">
 
-          <form className="flex flex-col gap-6">
+          <form
+            className="flex flex-col gap-6"
+            onSubmit={async (e) => {
+
+              e.preventDefault()
+
+              const respuesta = await fetch('http://localhost:3000/cotizacion', {
+
+                method: 'POST',
+
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+
+                body: JSON.stringify({
+                  nombre: 'Cliente prueba',
+                  telefono: '5512345678'
+                })
+
+              })
+
+              const data = await respuesta.json()
+
+              alert(data.mensaje)
+
+            }}
+          >
 
             <input
               type="text"
