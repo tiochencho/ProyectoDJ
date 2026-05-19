@@ -198,8 +198,15 @@ function App() {
                 },
 
                 body: JSON.stringify({
-                  nombre: 'Cliente prueba',
-                  telefono: '5512345678'
+
+                  nombre: 'Yael',
+                  telefono: '5512345678',
+                  fecha: '2026-06-20',
+                  tipoEvento: 'Boda',
+                  mensaje: 'Evento premium',
+                  fueraCDMX: mostrarViaje,
+                  presupuestoViaje: 4250
+
                 })
 
               })
