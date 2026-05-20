@@ -2,7 +2,36 @@ import { useState } from 'react'
 import djImage from './assets/DJ.png'
 
 function App() {
+  const [nombre, setNombre] = useState('')
+  const [telefono, setTelefono] = useState('')
+  const [fecha, setFecha] = useState('')
+  const [mensaje, setMensaje] = useState('')
+  const [tipoEvento, setTipoEvento] = useState('')
   const [mostrarViaje, setMostrarViaje] = useState(false)
+  const [ubicacion, setUbicacion] = useState('')
+
+  const calcularViaje = (ubicacion) => {
+
+    if (ubicacion.includes('Puebla')) {
+      return 4000
+    }
+
+    if (ubicacion.includes('Querétaro')) {
+      return 5000
+    }
+
+    if (ubicacion.includes('Guadalajara')) {
+      return 12000
+    }
+
+    if (ubicacion.includes('Estado de México')) {
+      return 1500
+    }
+
+    return 0
+
+  }
+
   return (
     <div className="bg-black text-white min-h-screen">
 
@@ -199,13 +228,13 @@ function App() {
 
                 body: JSON.stringify({
 
-                  nombre: 'Yael',
-                  telefono: '5512345678',
-                  fecha: '2026-06-20',
-                  tipoEvento: 'Boda',
-                  mensaje: 'Evento premium',
+                  nombre,
+                  telefono,
+                  fecha,
+                  tipoEvento,
+                  mensaje,
                   fueraCDMX: mostrarViaje,
-                  presupuestoViaje: 4250
+                  presupuestoViaje: calcularViaje(ubicacion)
 
                 })
 
@@ -221,14 +250,67 @@ function App() {
             <input
               type="text"
               placeholder="Nombre completo"
+
+              value={nombre}
+
+              onChange={(e) => setNombre(e.target.value)}
+
               className="bg-black border border-zinc-700 p-4 rounded-xl"
             />
 
             <input
               type="text"
               placeholder="Teléfono"
+
+              value={telefono}
+
+              onChange={(e) => setTelefono(e.target.value)}
+
               className="bg-black border border-zinc-700 p-4 rounded-xl"
             />
+            <input
+
+              type="date"
+
+              value={fecha}
+
+              onChange={(e) => setFecha(e.target.value)}
+
+              style={{ colorScheme: 'dark' }}
+
+              className="bg-black border border-zinc-700 p-4 rounded-xl text-white"
+
+            />
+            <select
+
+              value={tipoEvento}
+
+              onChange={(e) => setTipoEvento(e.target.value)}
+
+              className="bg-black border border-zinc-700 p-4 rounded-xl"
+            >
+
+              <option value="">
+                Tipo de evento
+              </option>
+
+              <option value="Boda">
+                Boda
+              </option>
+
+              <option value="XV Años">
+                XV Años
+              </option>
+
+              <option value="Empresarial">
+                Empresarial
+              </option>
+
+              <option value="Fiesta Privada">
+                Fiesta Privada
+              </option>
+
+            </select>
             {mostrarViaje && (
 
               <div className="bg-black border border-purple-500 p-6 rounded-2xl">
@@ -237,11 +319,7 @@ function App() {
                   Presupuesto de Viaje
                 </h4>
 
-                <input
-                  type="text"
-                  placeholder="Destino del evento"
-                  className="w-full bg-zinc-900 border border-zinc-700 p-4 rounded-xl mb-5"
-                />
+              
 
                 <div className="space-y-3 text-gray-300">
 
@@ -257,7 +335,8 @@ function App() {
 
                 <div className="mt-6 text-2xl font-bold text-green-400">
 
-                  Total extra estimado: $4,250 MXN
+                  Total extra estimado:
+                  ${calcularViaje(ubicacion)} MXN
 
                 </div>
 
@@ -267,8 +346,15 @@ function App() {
             <input
 
               type="text"
+
               placeholder="Ubicación del evento"
+
+              value={ubicacion}
+
+              onChange={(e) => setUbicacion(e.target.value)}
+
               className="bg-black border border-zinc-700 p-4 rounded-xl"
+
             />
 
             <label className="flex items-center gap-3 text-gray-300">
@@ -284,9 +370,17 @@ function App() {
             </label>
 
             <textarea
+
               placeholder="Cuéntanos sobre tu evento"
+
               rows="5"
+
+              value={mensaje}
+
+              onChange={(e) => setMensaje(e.target.value)}
+
               className="bg-black border border-zinc-700 p-4 rounded-xl"
+
             ></textarea>
             <p className="text-yellow-400 bg-zinc-800 p-4 rounded-xl border border-yellow-500">
 

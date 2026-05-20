@@ -24,9 +24,30 @@ function Admin() {
 
     <div className="min-h-screen bg-black text-white p-10">
 
-      <h1 className="text-5xl font-bold mb-10 text-purple-500">
-        Panel Admin
-      </h1>
+      <div className="flex justify-between items-center mb-10">
+
+  <h1 className="text-5xl font-bold text-purple-500">
+    Panel Admin
+  </h1>
+
+  <button
+
+    onClick={() => {
+
+      localStorage.removeItem('admin')
+
+      window.location.href = '/admin'
+
+    }}
+
+    className="bg-red-600 hover:bg-red-700 px-5 py-3 rounded-xl"
+  >
+
+    Cerrar Sesión
+
+  </button>
+
+</div>
 
       <div className="grid gap-6">
 
@@ -66,7 +87,26 @@ function Admin() {
               💰 Viaje:
               ${cotizacion.presupuestoViaje}
             </p>
+<button
 
+  onClick={async () => {
+
+    await fetch(`http://localhost:3000/cotizacion/${cotizacion._id}`, {
+
+      method: 'DELETE'
+
+    })
+
+    obtenerCotizaciones()
+
+  }}
+
+  className="mt-5 bg-red-600 hover:bg-red-700 px-5 py-3 rounded-xl"
+>
+
+  🗑 Eliminar
+
+</button>
           </div>
 
         ))}
