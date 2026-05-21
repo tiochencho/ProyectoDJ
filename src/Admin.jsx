@@ -12,7 +12,7 @@ function Admin() {
 
   const obtenerCotizaciones = async () => {
 
-    const respuesta = await fetch('http://localhost:3000/cotizaciones')
+    const respuesta = await fetch('https://proyectodj-api.onrender.com')
 
     const data = await respuesta.json()
 

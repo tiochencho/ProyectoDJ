@@ -218,7 +218,7 @@ function App() {
 
               e.preventDefault()
 
-              const respuesta = await fetch('http://localhost:3000/cotizacion', {
+              const respuesta = await fetch('https://proyectodj-api.onrender.com', {
 
                 method: 'POST',
 
