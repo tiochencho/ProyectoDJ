@@ -73,19 +73,17 @@ app.get('/cotizaciones', async (req, res) => {
   }
 
 })
-app.delete('/cotizacion/:id', async (req, res) => {
+app.delete('/cotizaciones/:id', async (req, res) => {
 
   try {
 
     await Cotizacion.findByIdAndDelete(req.params.id)
 
     res.json({
-      mensaje: 'Cotización eliminada 🚀'
+      mensaje: 'Cotización eliminada'
     })
 
   } catch (error) {
-
-    console.log(error)
 
     res.status(500).json({
       mensaje: 'Error al eliminar'
@@ -94,7 +92,6 @@ app.delete('/cotizacion/:id', async (req, res) => {
   }
 
 })
-
 const PORT = process.env.PORT || 3000
 
 app.listen(PORT, () => {

@@ -242,7 +242,13 @@ function App() {
 
               const data = await respuesta.json()
 
-              alert(data.mensaje)
+              setNombre('')
+              setTelefono('')
+              setFecha('')
+              setMensaje('')
+              setTipoEvento('')
+              setUbicacion('')
+              setMostrarViaje(false)
 
             }}
           >
@@ -319,7 +325,7 @@ function App() {
                   Presupuesto de Viaje
                 </h4>
 
-              
+
 
                 <div className="space-y-3 text-gray-300">
 

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 function Admin() {
 
   const [cotizaciones, setCotizaciones] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
 
@@ -12,11 +13,39 @@ function Admin() {
 
   const obtenerCotizaciones = async () => {
 
-    const respuesta = await fetch('https://proyectodj-api.onrender.com')
+    try {
 
-    const data = await respuesta.json()
+      const respuesta = await fetch(
+        'https://proyectodj-api.onrender.com/cotizaciones'
+      )
 
-    setCotizaciones(data)
+      const data = await respuesta.json()
+
+      setCotizaciones(data)
+
+    } catch (error) {
+
+      console.log(error)
+
+    } finally {
+
+      setLoading(false)
+
+    }
+
+  }
+
+  if (loading) {
+
+    return (
+
+      <div className="min-h-screen bg-black text-white flex items-center justify-center text-4xl">
+
+        Cargando panel...
+
+      </div>
+
+    )
 
   }
 
@@ -26,28 +55,28 @@ function Admin() {
 
       <div className="flex justify-between items-center mb-10">
 
-  <h1 className="text-5xl font-bold text-purple-500">
-    Panel Admin
-  </h1>
+        <h1 className="text-5xl font-bold text-purple-500">
+          Panel Admin
+        </h1>
 
-  <button
+        <button
 
-    onClick={() => {
+          onClick={() => {
 
-      localStorage.removeItem('admin')
+            localStorage.removeItem('admin')
 
-      window.location.href = '/admin'
+            window.location.href = '/admin'
 
-    }}
+          }}
 
-    className="bg-red-600 hover:bg-red-700 px-5 py-3 rounded-xl"
-  >
+          className="bg-red-600 hover:bg-red-700 px-5 py-3 rounded-xl"
+        >
 
-    Cerrar Sesión
+          Cerrar Sesión
 
-  </button>
+        </button>
 
-</div>
+      </div>
 
       <div className="grid gap-6">
 
@@ -87,26 +116,29 @@ function Admin() {
               💰 Viaje:
               ${cotizacion.presupuestoViaje}
             </p>
-<button
 
-  onClick={async () => {
+            <button
 
-    await fetch(`http://localhost:3000/cotizacion/${cotizacion._id}`, {
+              onClick={async () => {
 
-      method: 'DELETE'
+                await fetch(
+                  `https://proyectodj-api.onrender.com/cotizaciones/${cotizacion._id}`,
+                  {
+                    method: 'DELETE'
+                  }
+                )
 
-    })
+                obtenerCotizaciones()
 
-    obtenerCotizaciones()
+              }}
 
-  }}
+              className="mt-5 bg-red-600 hover:bg-red-700 px-5 py-3 rounded-xl"
+            >
 
-  className="mt-5 bg-red-600 hover:bg-red-700 px-5 py-3 rounded-xl"
->
+              🗑 Eliminar
 
-  🗑 Eliminar
+            </button>
 
-</button>
           </div>
 
         ))}
