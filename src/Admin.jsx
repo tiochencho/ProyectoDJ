@@ -65,8 +65,7 @@ function Admin() {
 
             localStorage.removeItem('admin')
 
-            window.location.href = '/admin'
-
+            window.location.href = '#/admin'
           }}
 
           className="bg-red-600 hover:bg-red-700 px-5 py-3 rounded-xl"
