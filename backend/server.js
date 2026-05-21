@@ -1,11 +1,12 @@
+require('dotenv').config()
+
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const Cotizacion = require('./models/Cotizacion')
 const app = express()
 
-mongoose.connect('mongodb+srv://Admin:B4tm4n11@cluster0.uvkqsof.mongodb.net/proyectoDJ')
-
+mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('MongoDB conectado 🚀')
   })
