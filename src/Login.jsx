@@ -19,6 +19,7 @@ function Login() {
     ) {
 
       localStorage.setItem('admin', 'true')
+      window.location.reload()
 
       navigate('/admin')
     } else {
