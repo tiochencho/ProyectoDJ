@@ -21,18 +21,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Routes>
 
         <Route path="/" element={<App />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/login" element={<Login />} />
 
-        <Route
-
-          path="/admin"
-
-          element={
-            localStorage.getItem('admin') === 'true'
-              ? <Admin />
-              : <Login />
-          }
-
-        />
       </Routes>
 
     </HashRouter>
