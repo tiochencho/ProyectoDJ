@@ -7,6 +7,7 @@ function Login() {
 
   const [usuario, setUsuario] = useState('')
   const [password, setPassword] = useState('')
+  const navigate = useNavigate()
 
   const iniciarSesion = (e) => {
 
@@ -19,11 +20,9 @@ function Login() {
 
       localStorage.setItem('admin', 'true')
 
-      window.location.href = '#/admin'
+      navigate('/admin')
     } else {
-
       alert('Datos incorrectos')
-
     }
 
   }

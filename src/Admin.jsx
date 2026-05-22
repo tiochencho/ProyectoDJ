@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Admin() {
 
   const [cotizaciones, setCotizaciones] = useState([])
   const [loading, setLoading] = useState(true)
+  const navigate = useNavigate()
 
   useEffect(() => {
 
@@ -65,8 +67,7 @@ function Admin() {
 
             localStorage.removeItem('admin')
 
-            window.location.href = '#/admin'
-          }}
+navigate('/admin')          }}
 
           className="bg-red-600 hover:bg-red-700 px-5 py-3 rounded-xl"
         >
